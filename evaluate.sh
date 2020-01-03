@@ -1,7 +1,10 @@
 #!/bin/bash
+#SBATCH --mem=30G
+#SBATCH --time=0-1
+#SBATCH -p gpu --gres=gpu:titanx:1
 
-gold_path=/data/wjiang/UCCA/test-data/test-xml-gold/UCCA_English-Wiki
-save_path=./exp/lexical/english/
+gold_path=data/ewt.aug.test
+save_path=exp/lexical/english/
 
 gpu=2
 python -u run.py evaluate\

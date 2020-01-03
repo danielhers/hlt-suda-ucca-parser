@@ -1,9 +1,11 @@
 #!/bin/bash
+#SBATCH --mem=30G
+#SBATCH --time=0-1
+#SBATCH -p gpu --gres=gpu:titanx:1
 
-
-test_path=/data/wjiang/UCCA/test-data/test-xml/UCCA_English-Wiki
-save_path=./exp/lexical/english
-pred_path=$save_path/UCCA_English-Wiki
+test_path=data/ewt.aug.test
+save_path=exp/lexical/english
+pred_path=$save_path/ewt.aug.test
 
 gpu=2
 python -u run.py predict\

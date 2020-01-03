@@ -26,8 +26,8 @@ class Train(object):
         subparser.add_argument("--emb_path", help="pretrained embedding path", default="")
         subparser.add_argument("--save_path", required=True, help="dic to save all file")
         subparser.add_argument("--config_path", required=True, help="init config file")
-        subparser.add_argument("--test_wiki_path", help="wiki test data dir", default="")
-        subparser.add_argument("--test_20k_path", help="20k data dir", default="")
+        subparser.add_argument("--test_id_path", help="id test data dir", default="")
+        subparser.add_argument("--test_ood_path", help="ood data dir", default="")
         subparser.set_defaults(func=self)
 
         return subparser
@@ -112,9 +112,9 @@ class Train(object):
         config_path = os.path.join(args.save_path, "config.json")
         ucca_parser = UCCA_Parser.load(vocab_path, config_path, state_path)
 
-        if args.test_wiki_path:
-            print("evaluating test data : %s" % (args.test_wiki_path))
-            test = Corpus(args.test_wiki_path)
+        if args.test_id_path:
+            print("evaluating test data : %s" % (args.test_id_path))
+            test = Corpus(args.test_id_path)
             print(test)
             test_loader = Data.DataLoader(
                 dataset=test.generate_inputs(vocab, False),
@@ -124,14 +124,14 @@ class Train(object):
             )
             ucca_evaluator = UCCA_Evaluator(
                 parser=ucca_parser,
-                gold_dic=args.test_wiki_path,
+                gold_dic=args.test_id_path,
             )
             ucca_evaluator.compute_accuracy(test_loader)
             ucca_evaluator.remove_temp()
 
-        if args.test_20k_path:
-            print("evaluating test data : %s" % (args.test_20k_path))
-            test = Corpus(args.test_20k_path)
+        if args.test_ood_path:
+            print("evaluating test data : %s" % (args.test_ood_path))
+            test = Corpus(args.test_ood_path)
             print(test)
             test_loader = Data.DataLoader(
                 dataset=test.generate_inputs(vocab, False),
@@ -141,7 +141,7 @@ class Train(object):
             )
             ucca_evaluator = UCCA_Evaluator(
                 parser=ucca_parser,
-                gold_dic=args.test_20k_path,
+                gold_dic=args.test_ood_path,
             )
             ucca_evaluator.compute_accuracy(test_loader)
             ucca_evaluator.remove_temp()
