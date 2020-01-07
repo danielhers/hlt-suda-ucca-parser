@@ -2,7 +2,7 @@
 #SBATCH --mem=30G
 #SBATCH --time=3-0
 #SBATCH -p gpu --gres=gpu:titanx:1
-#SBATCH --array=1-3
+#SBATCH --array=1-3%1
 
 train_path=data/ewt.aug.train
 dev_path=data/ewt.aug.dev

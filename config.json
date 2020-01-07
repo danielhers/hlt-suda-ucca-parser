@@ -9,8 +9,8 @@
         "ent_dim": 25,
         "ent_iob_dim": 25,
 
-        "bert_path": "/data/wjiang/data/bert/bert-base-multilingual-cased.tar.gz",
-        "bert_vocab": "/data/wjiang/data/bert/bert-base-multilingual-cased-vocab.txt",
+        "bert_path": "bert/bert-base-multilingual-cased.tar.gz",
+        "bert_vocab": "bert/vocab.txt",
         "bert_layer":[7, 12],
         "bert_dim":768,
 
