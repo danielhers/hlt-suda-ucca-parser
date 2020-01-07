@@ -14,9 +14,7 @@ test_ood_path=data/ewt.aug.dev
 
 gpu=1
 
-if [ ! -d "$save_path" ]; then
-    mkdir "$save_path"
-fi
+mkdir -p "$save_path"
 
 python -u run.py train\
     --gpu=$gpu \
