@@ -6,7 +6,7 @@
 
 test_path=data/ewt.aug.dev
 save_path=exp/lexical-bert/english$SLURM_ARRAY_TASK_ID
-pred_path=$save_path/ewt.aug.dev$SLURM_ARRAY_TASK_ID
+pred_path=$save_path/ewt.aug.dev
 
 gpu=2
 python -u run.py predict\
